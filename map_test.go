@@ -1,7 +1,7 @@
 package merge
 
 import (
-	"github.com/stretchr/testify/assert"
+	"reflect"
 	"testing"
 )
 
@@ -19,7 +19,7 @@ func TestMap_Merge(t *testing.T) {
 		args args[string, testVal]
 	}{
 		{
-			name: "merge maps dbie_example 1",
+			name: "merge maps test",
 			args: args[string, testVal]{
 				left:  map[string]testVal{"oneKey": {Val: "oneValue"}},
 				right: map[string]testVal{"otherKey": {Val: "otherKey"}},
@@ -33,7 +33,9 @@ func TestMap_Merge(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(K *testing.T) {
 			tt.args.left.Merge(tt.args.right)
-			assert.Equal(K, tt.args.want, tt.args.left)
+			if equal := reflect.DeepEqual(tt.args.want, tt.args.left); !equal {
+				t.Fatal("Expected: ", tt.args.want, "Actual: ", tt.args.left)
+			}
 		})
 	}
 }
