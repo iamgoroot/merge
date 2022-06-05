@@ -1,7 +1,7 @@
 package merge
 
 import (
-	"github.com/stretchr/testify/assert"
+	"reflect"
 	"testing"
 )
 
@@ -27,7 +27,9 @@ func TestSlice_Merge(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.args.left.Merge(tt.args.right)
-			assert.Equal(t, tt.args.want, tt.args.left)
+			if equal := reflect.DeepEqual(tt.args.want, tt.args.left); !equal {
+				t.Fatal("Expected: ", tt.args.want, "Actual: ", tt.args.left)
+			}
 		})
 	}
 }
