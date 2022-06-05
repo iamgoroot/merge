@@ -10,6 +10,9 @@ var _ Merge[Slice[string]] = &Slice[string]{}
 type Slice[V any] []V
 
 func (left *Slice[V]) Merge(right Slice[V]) Slice[V] {
+	if right == nil {
+		return *left
+	}
 	*left = mergeSlice[V, []V](*left, right)
 	return *left
 }
