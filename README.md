@@ -1,3 +1,7 @@
+# Merge maps and slices
+[![codecov](https://codecov.io/gh/iamgoroot/merge/branch/main/graph/badge.svg?token=HDGXEOT8BA)](https://codecov.io/gh/iamgoroot/merge)
+
+
 Generic type wrappers for any map or slice
 
 
